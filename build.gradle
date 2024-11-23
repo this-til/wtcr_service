@@ -26,6 +26,7 @@ repositories {
 
 dependencies {
 
+
     compileOnly 'org.jetbrains:annotations:24.0.0'
     implementation "com.auth0:java-jwt:4.4.0"
     runtimeOnly 'com.mysql:mysql-connector-j'
@@ -35,6 +36,10 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-graphql'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.netflix.graphql.dgs.codegen:graphql-dgs-codegen-gradle:6.2.1'
+    implementation 'com.graphql-java:graphql-java-spring-boot-starter-webmvc:1.0'
+    implementation 'com.google.guava:guava:27.1-jre'
+
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -42,6 +47,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework:spring-webflux'
     testImplementation 'org.springframework.graphql:spring-graphql-test'
+
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

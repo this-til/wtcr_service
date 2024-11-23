@@ -11,7 +11,7 @@ import java.util.Date;
 @Configuration
 public class JwtConfig implements WebMvcConfigurer {
 
-    @Value("jwt.salt")
+    @Value("${jwt.salt}")
     private String salt;
 
     public String generateJwt() {
