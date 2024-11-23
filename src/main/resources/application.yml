@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/qrs?useSSL=false&serverTimezone=UTC
+    username: qrs
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mybatis-plus:
+    configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+cors:
+  allowed-origins: "*"
+
+jwt:
+  salt: "b703fb6a-2459-4d2e-a1db-f678641bb4b2"
