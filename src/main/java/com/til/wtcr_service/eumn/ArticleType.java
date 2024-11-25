@@ -7,11 +7,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ArticlesVisibility {
+public enum ArticleType {
 
-    PUBLIC(0),
-    ADMIN_ONLY(1),
-    PRIVATE(2);
+    ARTICLE(0),
+    ANNOUNCEMENT(1);
 
     @EnumValue
     private final int id;
@@ -21,6 +20,4 @@ public enum ArticlesVisibility {
     public String toString() {
         return super.toString();
     }
-
 }
-

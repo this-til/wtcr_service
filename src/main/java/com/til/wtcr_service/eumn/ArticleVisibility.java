@@ -7,12 +7,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ArticlesState {
+public enum ArticleVisibility {
 
-    DRAFT(0),
-    PUBLISHED(1),
-    OLD(2),
-    DELETED(3);
+    PRIVATE(0),
+    ADMIN_ONLY(1),
+    PUBLIC(2);
 
     @EnumValue
     private final int id;
@@ -22,4 +21,6 @@ public enum ArticlesState {
     public String toString() {
         return super.toString();
     }
+
 }
+

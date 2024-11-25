@@ -3,10 +3,14 @@ directive @role(role:String!) on FIELD_DEFINITION
 type Query {
     self : User
 
-    getUserById(id : String) : User  @role(role :"ADMIN")
-    getUserByAccount(account : String) : User  @role(role:"ADMIN")
-    getUserList(page: Int, size : Int) : [User] @role(role:"ADMIN")
-    getUserListByName(name: String, page: Int, size : Int) : [User]  @role(role:"ADMIN")
+    getUserById(id : ID) : User  @role(role :"EDITOR")
+    getUserByAccount(account : String) : User  @role(role:"EDITOR")
+    getUserList(page: Int, size : Int) : [User] @role(role:"EDITOR")
+    getUserListByName(name: String, page: Int, size : Int) : [User]  @role(role:"EDITOR")
+
+    getArticleById(id: ID) : Article @role(role:"EDITOR")
+    getArticleList(page : Int, size : Int) : [Article] @role(role:"EDITOR")
+
 }
 
 
@@ -20,3 +24,25 @@ type User {
     gender: String!
     permission: String!
 }
+
+enum ArticlesNodeState {
+    # 根据你的 ArticlesState 类的实际值来填充
+    DRAFT
+    UNDER_REVIEW
+    PUBLISHED
+    OLD
+    DELETED
+    # 添加其他状态
+}
+
+enum ArticlesVisibility {
+    PUBLIC
+    ADMIN_ONLY
+    PRIVATE
+}
+
+type Article {
+
+}
+
+
