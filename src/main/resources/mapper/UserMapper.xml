@@ -7,18 +7,20 @@
     <resultMap id="BaseResultMap" type="com.til.wtcr_service.pojo.User">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="account" column="account" jdbcType="VARCHAR"/>
+            <result property="salt" column="salt" jdbcType="VARCHAR"/>
             <result property="password" column="password" jdbcType="VARCHAR"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="phone" column="phone" jdbcType="VARCHAR"/>
-            <result property="head_path" column="head_path" jdbcType="VARCHAR"/>
+            <result property="head_url" column="head_url" jdbcType="VARCHAR"/>
             <result property="gender" column="gender" jdbcType="INTEGER"/>
             <result property="permission" column="permission" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,account,password,
-        name,email,phone,
-        head_path,gender,permission
+        id,account,salt,
+        password,name,email,
+        phone,head_url,gender,
+        permission
     </sql>
 </mapper>

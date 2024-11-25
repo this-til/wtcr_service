@@ -1,20 +1,26 @@
 spring:
+  application:
+    name: wtcr_service
   datasource:
-    url: jdbc:mysql://localhost:3306/qrs?useSSL=false&serverTimezone=UTC
-    username: qrs
-    password: 123456
+    url: jdbc:mysql://localhost:3306/wtcr
+    username: root
+    password: 20041119LYS&lys
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   mybatis-plus:
     configuration:
       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
   graphql:
     graphiql:
       enabled: true
 
 cors:
   allowed-origins: "*"
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
 
 jwt:
   salt: "b703fb6a-2459-4d2e-a1db-f678641bb4b2"

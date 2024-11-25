@@ -7,13 +7,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum UserPermission {
+public enum ArticlesState {
 
-    TOURIST(0),
-    UNVERIFIED(1),
-    USER(2),
-    EDITOR(3),
-    ADMIN(4),;
+    DRAFT(0),
+    PUBLISHED(1),
+    OLD(2),
+    DELETED(3);
 
     @EnumValue
     private final int id;

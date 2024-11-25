@@ -5,6 +5,7 @@ plugins {
     id 'com.netflix.dgs.codegen' version '6.2.1'
 }
 
+
 group = 'com.til.wtcr_service'
 version = '0.0.1-SNAPSHOT'
 
@@ -20,42 +21,58 @@ configurations {
     }
 }
 
-repositories {
-    mavenCentral()
+
+configurations.configureEach {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 }
 
 dependencies {
 
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    //implementation 'com.netflix.graphql.dgs.codegen:graphql-dgs-codegen-gradle:6.2.1'
+    //implementation 'io.github.graphql-java:graphql-java-annotations:9.1'
+    //implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:15.1.0'
+    //implementation 'com.graphql-java-kickstart:graphql-java-tools:5.4.0'
+    //implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
+    //implementation 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
+
+    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:7.0.1'
+    implementation 'com.graphql-java-kickstart:graphiql-spring-boot-starter:7.0.1'
+
 
     compileOnly 'org.jetbrains:annotations:24.0.0'
-    implementation "com.auth0:java-jwt:4.4.0"
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    implementation 'io.netty:netty-all:4.1.109.Final'
 
-    implementation 'com.baomidou:mybatis-plus:3.5.9'
-
+    implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-graphql'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'com.netflix.graphql.dgs.codegen:graphql-dgs-codegen-gradle:6.2.1'
-    implementation 'com.graphql-java:graphql-java-spring-boot-starter-webmvc:1.0'
-    implementation 'com.google.guava:guava:27.1-jre'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 
 
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
 
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.7'
+    implementation "com.auth0:java-jwt:4.4.0"
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    implementation 'org.apache.groovy:groovy'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework:spring-webflux'
-    testImplementation 'org.springframework.graphql:spring-graphql-test'
-
-
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
 
-generateJava {
-    schemaPaths = ["${projectDir}/src/main/resources/graphql-client"]
-    packageName = 'com.til.wtcr_service.codegen'
-    generateClient = true
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
+
+    implementation 'com.google.code.gson:gson:2.11.0'
 }
 
 tasks.named('test') {

@@ -1,0 +1,22 @@
+directive @role(role:String!) on FIELD_DEFINITION
+
+type Query {
+    self : User
+
+    getUserById(id : String) : User  @role(role :"ADMIN")
+    getUserByAccount(account : String) : User  @role(role:"ADMIN")
+    getUserList(page: Int, size : Int) : [User] @role(role:"ADMIN")
+    getUserListByName(name: String, page: Int, size : Int) : [User]  @role(role:"ADMIN")
+}
+
+
+type User {
+    id: ID!
+    account: String!
+    name: String
+    email: String
+    phone: String
+    headPath: String
+    gender: String!
+    permission: String!
+}

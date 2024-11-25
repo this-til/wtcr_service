@@ -7,13 +7,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum UserPermission {
+public enum ArticlesVisibility {
 
-    TOURIST(0),
-    UNVERIFIED(1),
-    USER(2),
-    EDITOR(3),
-    ADMIN(4),;
+    PUBLIC(0),
+    ADMIN_ONLY(1),
+    PRIVATE(2);
 
     @EnumValue
     private final int id;
@@ -23,4 +21,6 @@ public enum UserPermission {
     public String toString() {
         return super.toString();
     }
+
 }
+
