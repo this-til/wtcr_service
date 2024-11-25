@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.til.wtcr_service.mapper.ArticlesMapper">
+
+    <resultMap id="BaseResultMap" type="com.til.wtcr_service.pojo.Articles">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="basics" column="basics" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="summary" column="summary" jdbcType="VARCHAR"/>
+            <result property="author_id" column="author_id" jdbcType="INTEGER"/>
+            <result property="editors_id" column="editors_id" jdbcType="VARCHAR"/>
+            <result property="category" column="category" jdbcType="VARCHAR"/>
+            <result property="cover_image_url" column="cover_image_url" jdbcType="VARCHAR"/>
+            <result property="publish_date" column="publish_date" jdbcType="TIMESTAMP"/>
+            <result property="update_date" column="update_date" jdbcType="TIMESTAMP"/>
+            <result property="view_count" column="view_count" jdbcType="INTEGER"/>
+            <result property="comment_count" column="comment_count" jdbcType="INTEGER"/>
+            <result property="like_count" column="like_count" jdbcType="INTEGER"/>
+            <result property="dislike_count" column="dislike_count" jdbcType="INTEGER"/>
+            <result property="share_count" column="share_count" jdbcType="INTEGER"/>
+            <result property="tags" column="tags" jdbcType="INTEGER"/>
+            <result property="customTags" column="customTags" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="visibility" column="visibility" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,basics,title,
+        content,summary,author_id,
+        editors_id,category,cover_image_url,
+        publish_date,update_date,view_count,
+        comment_count,like_count,dislike_count,
+        share_count,tags,customTags,
+        status,visibility
+    </sql>
+</mapper>
