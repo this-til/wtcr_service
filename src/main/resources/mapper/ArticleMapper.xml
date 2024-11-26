@@ -6,14 +6,15 @@
 
     <resultMap id="BaseResultMap" type="com.til.wtcr_service.pojo.Article">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="authorId" column="author_id" jdbcType="INTEGER"/>
-            <result property="editorsId" column="editors_id" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="editors" column="editors_id" jdbcType="VARCHAR"/>
             <result property="type" column="type" jdbcType="INTEGER"/>
+            <result property="state" column="state" jdbcType="INTEGER"/>
             <result property="visibility" column="visibility" jdbcType="INTEGER"/>
             <result property="customTags" column="custom_tags" jdbcType="VARCHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="publishDate" column="publish_date" jdbcType="TIMESTAMP"/>
-            <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+            <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
             <result property="viewCount" column="view_count" jdbcType="INTEGER"/>
             <result property="commentCount" column="comment_count" jdbcType="INTEGER"/>
             <result property="likeCount" column="like_count" jdbcType="INTEGER"/>
@@ -22,10 +23,10 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,author_id,editors_id,
-        type,visibility,custom_tags,
-        create_time,publish_date,update_date,
-        view_count,comment_count,like_count,
-        dislike_count,share_count
+        id,user_id,editors_id,
+        type,state,visibility,
+        custom_tags,create_time,publish_time,
+        update_time,view_count,comment_count,
+        like_count,dislike_count,share_count
     </sql>
 </mapper>

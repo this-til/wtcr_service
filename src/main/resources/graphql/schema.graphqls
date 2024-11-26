@@ -1,48 +1,37 @@
-directive @role(role:String!) on FIELD_DEFINITION
+# java.time.LocalDateTime implementation
+scalar LocalDateTime
 
 type Query {
     self : User
-
-    getUserById(id : ID) : User  @role(role :"EDITOR")
-    getUserByAccount(account : String) : User  @role(role:"EDITOR")
-    getUserList(page: Int, size : Int) : [User] @role(role:"EDITOR")
-    getUserListByName(name: String, page: Int, size : Int) : [User]  @role(role:"EDITOR")
-
-    getArticleById(id: ID) : Article @role(role:"EDITOR")
-    getArticleList(page : Int, size : Int) : [Article] @role(role:"EDITOR")
-
+    userList(userFilter: UserFilter = {},pageModel : PageModel = {}) : [User]
+    articleList (articleFilter : ArticleFilter = {},  pageModel : PageModel = {} ) : [Article]
 }
 
 
-type User {
-    id: ID!
-    account: String!
-    name: String
-    email: String
-    phone: String
-    headPath: String
-    gender: String!
-    permission: String!
+input PageModel {
+    page : Int = 1
+    size : Int = 10
 }
 
-enum ArticlesNodeState {
-    # 根据你的 ArticlesState 类的实际值来填充
-    DRAFT
-    UNDER_REVIEW
-    PUBLISHED
-    OLD
-    DELETED
-    # 添加其他状态
+input TimeRanger {
+    min : LocalDateTime
+    max : LocalDateTime
 }
 
-enum ArticlesVisibility {
-    PUBLIC
-    ADMIN_ONLY
-    PRIVATE
+input IntRanger {
+    min : Int
+    max : Int
 }
 
-type Article {
-
+input  FloatRanger {
+    min : Float
+    max : Float
 }
 
+enum SelectModel {
+    #精确地
+    PRECISE
 
+    #模糊的
+    BLURRY
+}

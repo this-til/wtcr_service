@@ -4,14 +4,22 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.til.wtcr_service.config.JwtConfig;
-import com.til.wtcr_service.pojo.Article;
-import com.til.wtcr_service.pojo.User;
+import com.til.wtcr_service.eumn.ArticleType;
+import com.til.wtcr_service.eumn.SelectModel;
+import com.til.wtcr_service.eumn.UserGender;
+import com.til.wtcr_service.eumn.UserPermission;
+import com.til.wtcr_service.pojo.*;
 import com.til.wtcr_service.service.ArticleService;
 import com.til.wtcr_service.service.UserService;
+import jakarta.annotation.Nullable;
 import jakarta.annotation.Resource;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class GraphQLController {
@@ -32,34 +40,36 @@ public class GraphQLController {
     }
 
     @QueryMapping
-    public User getUserById(@Argument int id) {
-        return userService.getById(id);
+    public List<User> userList(@Argument UserFilter userFilter, @Argument PageModel pageModel) {
+        return userService.page(pageModel.asPage(), userFilter.asWrapper()).getRecords();
     }
 
     @QueryMapping
-    public User getUserByAccount(@Argument String account) {
-        return userService.getOne(new LambdaQueryWrapper<User>().eq(User::getAccount, account));
+    public List<Article> articleList(@Argument ArticleFilter articleFilter, @Argument PageModel pageModel) {
+        return articleService.page(pageModel.asPage(), articleFilter.asWrapper()).getRecords();
     }
 
-    @QueryMapping
-    public IPage<User> getUserList(@Argument int page, @Argument int size) {
-        return userService.page(new Page<>(page, size));
+    @SchemaMapping(typeName = "User")
+    public IPage<Article> articleList(User user, @Argument ArticleFilter articleFilter, @Argument PageModel pageModel) {
+        //权限分级
+        return articleService.page(pageModel.asPage(), articleFilter.asWrapper());
     }
 
-    @QueryMapping
-    public IPage<User> getUserListByName(@Argument String name, @Argument int page, @Argument int size) {
-        return userService.page(new Page<>(page, size), new LambdaQueryWrapper<User>().eq(User::getName, name));
+    @SchemaMapping(typeName = "Article")
+    public List<Integer> editorIds(Article article) {
+        String editors = article.getEditors();
+        String[] split = editors.split(",");
+        return Arrays.stream(split).filter(s -> !s.isEmpty()).map(Integer::parseInt).collect(Collectors.toList());
     }
 
-    @QueryMapping
-    public Article getArticleById(@Argument int id) {
-        return articleService.getById(id);
+    @SchemaMapping(typeName = "Article")
+    public User user(Article article) {
+        return userService.getById(article.getUserId());
     }
 
-
-    @QueryMapping
-    public IPage<Article> getArticleList(@Argument int page, @Argument int size) {
-        return articleService.page(new Page<>(page, size));
+    @SchemaMapping(typeName = "Article")
+    public List<User> editors(Article article) {
+        return userService.listByIds(editorIds(article));
     }
 
 }

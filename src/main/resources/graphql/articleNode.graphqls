@@ -1,0 +1,8 @@
+enum ArticleNodeState {
+    DRAFT
+    UNDER_REVIEW
+    PUBLISHED
+    OLD
+    DELETED
+}
+

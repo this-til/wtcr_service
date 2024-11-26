@@ -4,59 +4,66 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
-import com.baomidou.mybatisplus.extension.handlers.GsonTypeHandler;
-import com.til.wtcr_service.eumn.ArticleType;
+import com.til.wtcr_service.eumn.ArticleState;
 import com.til.wtcr_service.eumn.ArticleVisibility;
 import lombok.Data;
 
 /**
+ * 
  * @TableName article
  */
-@TableName(value = "article")
+@TableName(value ="article")
 @Data
 public class Article implements Serializable {
     /**
-     *
+     * 
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 对应发布作者的id
+     *
      */
-    @TableField(value = "author_id")
-    private Integer authorId;
+    @TableField(value = "user_id")
+    private Integer userId;
 
     /**
-     * 所有能够编辑者的id
+     * 所有能够编辑者的id {aId}.{b.Id}
      */
-    @TableField(value = "editors_id", typeHandler = GsonTypeHandler.class)
-    private Integer[] editorsId;
+    @TableField(value = "editors")
+    private String editors;
 
     /**
      * 类别
      */
     @TableField(value = "type")
-    private ArticleType type;
+    private Integer type;
 
     /**
-     * lock at ArticlesVisibility
+     * lock at ArticleState
+     */
+    @TableField(value = "state")
+    private ArticleState state;
+
+    /**
+     * lock at ArticleVisibility
      */
     @TableField(value = "visibility")
     private ArticleVisibility visibility;
 
     /**
-     *
+     * 
      */
     @TableField(value = "custom_tags")
     private String customTags;
 
     /**
-     *
+     * 
      */
     @TableField(value = "create_time")
     private LocalDateTime createTime;
@@ -64,14 +71,14 @@ public class Article implements Serializable {
     /**
      * 发布时间
      */
-    @TableField(value = "publish_date")
-    private LocalDateTime publishDate;
+    @TableField(value = "publish_time")
+    private LocalDateTime publishTime;
 
     /**
      * 最后更新时间
      */
-    @TableField(value = "update_date")
-    private LocalDateTime updateDate;
+    @TableField(value = "update_time")
+    private LocalDateTime updateTime;
 
     /**
      * 浏览次数

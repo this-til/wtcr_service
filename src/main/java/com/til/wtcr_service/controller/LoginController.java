@@ -3,7 +3,6 @@ package com.til.wtcr_service.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.til.wtcr_service.config.JwtConfig;
 import com.til.wtcr_service.eumn.ResultType;
-import com.til.wtcr_service.interceptor.LoginInterceptor;
 import com.til.wtcr_service.pojo.Result;
 import com.til.wtcr_service.pojo.User;
 import com.til.wtcr_service.service.UserService;

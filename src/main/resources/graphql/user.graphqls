@@ -1,0 +1,57 @@
+directive @role(role:String!) on FIELD_DEFINITION
+
+enum UserGender {
+    WAL_MART_SHOPPING_BAGS,
+    MEN,
+    WOMEN,
+}
+
+enum UserPermission {
+    TOURIST,
+    UNVERIFIED,
+    USER,
+    EDITOR,
+    ADMIN
+}
+
+type User {
+    id: ID!
+    account: String!
+    name: String
+    email: String
+    phone: String
+    headPath: String
+
+    gender: UserGender
+    permission: UserPermission
+
+    registerTime: LocalDateTime
+    lastLoginTime: LocalDateTime
+
+    #获取属于自己的文章 默认是自己能够编辑的
+    articleList(articleFilter: ArticleFilter  = {} pageModel: PageModel = {}) : [Article]
+
+}
+
+input UserFilter {
+    #精确影响
+    id : ID
+
+    account : String
+    blurryAccount  : String
+    name: String
+    blurryName: String
+    email: String
+    blurryEmail: String
+    phone: String
+    blurryPhone: String
+
+    gender: [UserGender]
+    permission: [UserPermission]
+    greaterPermission : UserPermission
+    lessPermission : UserPermission
+
+    registerTimeRanger : TimeRanger
+    lastLoginTimeRanger : TimeRanger
+
+}

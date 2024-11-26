@@ -7,6 +7,7 @@
     <resultMap id="BaseResultMap" type="com.til.wtcr_service.pojo.ArticleNode">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="articleId" column="article_id" jdbcType="INTEGER"/>
+            <result property="changeUserId" column="change_user_id" jdbcType="INTEGER"/>
             <result property="state" column="state" jdbcType="INTEGER"/>
             <result property="previousVersionId" column="previous_version_id" jdbcType="INTEGER"/>
             <result property="nextVersionId" column="next_version_id" jdbcType="INTEGER"/>
@@ -17,8 +18,9 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,article_id,state,
-        previous_version_id,next_version_id,update_time,
-        title,cover_image_url,content
+        id,article_id,change_user_id,
+        state,previous_version_id,next_version_id,
+        update_time,title,cover_image_url,
+        content
     </sql>
 </mapper>

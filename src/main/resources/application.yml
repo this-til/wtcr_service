@@ -25,3 +25,11 @@ mybatis:
 jwt:
   salt: "b703fb6a-2459-4d2e-a1db-f678641bb4b2"
 
+graphql:
+  datetime:
+    scalars:
+      local-date:
+        format: MM/dd/yyyy
+      local-date-time:
+        format: yyyy-MM-dd'T'HH:mm:ss
+

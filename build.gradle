@@ -41,6 +41,9 @@ dependencies {
     //implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
     //implementation 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
 
+    implementation("com.tailrocks.graphql:graphql-datetime-kickstart-spring-boot-starter:6.0.0")
+    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
+
     implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:7.0.1'
     implementation 'com.graphql-java-kickstart:graphiql-spring-boot-starter:7.0.1'
 
@@ -55,7 +58,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
-
 
 
     implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.7'

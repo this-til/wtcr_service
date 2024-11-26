@@ -12,15 +12,17 @@
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="phone" column="phone" jdbcType="VARCHAR"/>
-            <result property="head_url" column="head_url" jdbcType="VARCHAR"/>
+            <result property="headUrl" column="head_url" jdbcType="VARCHAR"/>
             <result property="gender" column="gender" jdbcType="INTEGER"/>
             <result property="permission" column="permission" jdbcType="INTEGER"/>
+            <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
+            <result property="lastLoginTime" column="last_login_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,account,salt,
         password,name,email,
         phone,head_url,gender,
-        permission
+        permission,register_time,last_login_time
     </sql>
 </mapper>

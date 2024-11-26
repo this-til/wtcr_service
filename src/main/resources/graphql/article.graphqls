@@ -1,0 +1,66 @@
+enum ArticleVisibility {
+    PUBLIC
+    ADMIN_ONLY
+    PRIVATE
+}
+
+enum ArticleType {
+    ARTICLE
+    ANNOUNCEMENT
+}
+
+enum ArticleState {
+    DRAFT
+    UNDER_REVIEW
+    PUBLISHED
+}
+
+# GraphQL 类型定义
+type Article {
+    id: ID!
+    userId: ID!
+    type: ArticleType
+    state : ArticleState
+    visibility: ArticleVisibility
+    customTags: String
+
+    createTime: LocalDateTime
+    publishTime: LocalDateTime
+    updateTime: LocalDateTime
+
+    viewCount: Int
+    commentCount: Int
+    likeCount: Int
+    dislikeCount: Int
+    shareCount: Int
+
+    user : User
+    editors : [User]
+    editorIds: [ID]
+}
+
+
+input ArticleFilter {
+    # 精准描述查找哪一个文章从id
+    id: ID
+
+    # 表明必须是author所写的文章
+    userId: [ID]
+    # 表明是editor能够编辑的文章
+    editorId : [ID]
+
+    type: [ArticleType]
+    state: [ArticleState]
+    visibility: [ArticleVisibility]
+
+    createTimeRanger : TimeRanger
+    publishTimeRanger : TimeRanger
+    updateTimeRanger : TimeRanger
+
+    viewCountRanger : IntRanger
+    commentCountRanger : IntRanger
+    likeCountRanger : IntRanger
+    dislikeCountRanger : IntRanger
+    shareCountRanger : IntRanger
+
+}
