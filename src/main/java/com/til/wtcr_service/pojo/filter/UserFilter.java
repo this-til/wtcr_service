@@ -1,13 +1,16 @@
-package com.til.wtcr_service.pojo;
+package com.til.wtcr_service.pojo.filter;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.til.wtcr_service.eumn.UserGender;
 import com.til.wtcr_service.eumn.UserPermission;
+import com.til.wtcr_service.eumn.sort.UserSortMode;
+import com.til.wtcr_service.pojo.PageModel;
+import com.til.wtcr_service.pojo.data.TimeRanger;
+import com.til.wtcr_service.pojo.User;
 import lombok.Data;
 import org.jetbrains.annotations.Nullable;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -16,6 +19,12 @@ import java.util.stream.Collectors;
 
 @Data
 public class UserFilter {
+    private PageModel pageModel;
+    @Nullable
+    private UserSortMode userSortMode;
+    @Nullable
+    private Boolean asc;
+
     @Nullable
     private Long id;
     @Nullable
@@ -113,6 +122,21 @@ public class UserFilter {
             LocalDateTime max = getLastLoginTimeRanger().getMax() == null ? LocalDateTime.now() : getLastLoginTimeRanger().getMax();
             LocalDateTime min = getLastLoginTimeRanger().getMin() == null ? LocalDateTime.MIN : getLastLoginTimeRanger().getMin();
             wrapper.gt(User::getLastLoginTime, min).lt(User::getLastLoginTime, max);
+        }
+
+        if (getUserSortMode() != null) {
+            boolean asc = getAsc() != null ? getAsc() : false;
+            switch (getUserSortMode()) {
+                case CREATION_TIME:
+                    wrapper.orderBy(true, asc, User::getRegisterTime);
+                    break;
+                case LOGIN_TIME:
+                    wrapper.orderBy(true, asc, User::getLastLoginTime);
+                    break;
+                case NAME:
+                    wrapper.orderBy(true, asc, User::getName);
+                    break;
+            }
         }
 
         return wrapper;

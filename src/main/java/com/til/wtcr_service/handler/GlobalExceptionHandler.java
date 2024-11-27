@@ -1,6 +1,6 @@
 package com.til.wtcr_service.handler;
 
-import com.til.wtcr_service.pojo.Result;
+import com.til.wtcr_service.pojo.data.Result;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.ExceptionHandler;

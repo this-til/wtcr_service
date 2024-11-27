@@ -1,4 +1,4 @@
-package com.til.wtcr_service.pojo;
+package com.til.wtcr_service.pojo.data;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

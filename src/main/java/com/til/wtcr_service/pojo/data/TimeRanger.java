@@ -1,9 +1,8 @@
-package com.til.wtcr_service.pojo;
+package com.til.wtcr_service.pojo.data;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)

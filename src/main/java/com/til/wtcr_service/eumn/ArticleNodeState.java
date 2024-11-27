@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ArticlesNodeState {
+public enum ArticleNodeState {
     /***
      * 只是草稿
      */

@@ -3,8 +3,8 @@ scalar LocalDateTime
 
 type Query {
     self : User
-    userList(userFilter: UserFilter = {},pageModel : PageModel = {}) : [User]
-    articleList (articleFilter : ArticleFilter = {},  pageModel : PageModel = {} ) : [Article]
+    userList(userFilter: UserFilter = {}) : [User]
+    articleList (articleFilter : ArticleFilter = {}) : [Article]
 }
 
 

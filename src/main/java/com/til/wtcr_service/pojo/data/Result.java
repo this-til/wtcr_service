@@ -1,4 +1,4 @@
-package com.til.wtcr_service.pojo;
+package com.til.wtcr_service.pojo.data;
 
 import com.til.wtcr_service.eumn.ResultType;
 import lombok.AllArgsConstructor;

@@ -14,6 +14,12 @@ enum UserPermission {
     ADMIN
 }
 
+enum UserSortMode {
+    CREATION_TIME
+    LOGIN_TIME
+    NAME
+}
+
 type User {
     id: ID!
     account: String!
@@ -28,12 +34,17 @@ type User {
     registerTime: LocalDateTime
     lastLoginTime: LocalDateTime
 
-    #获取属于自己的文章 默认是自己能够编辑的
-    articleList(articleFilter: ArticleFilter  = {} pageModel: PageModel = {}) : [Article]
+    #获取属于自己的文章 强制添加条件：是自己能够编辑的
+    articleList(articleFilter: ArticleFilter  = {} ) : [Article]
 
 }
 
 input UserFilter {
+
+    pageModel: PageModel = {}
+    userSortMode : UserSortMode
+    asc : Boolean = false
+
     #精确影响
     id : ID
 
@@ -55,3 +66,4 @@ input UserFilter {
     lastLoginTimeRanger : TimeRanger
 
 }
+

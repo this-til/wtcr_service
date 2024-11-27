@@ -6,3 +6,40 @@ enum ArticleNodeState {
     DELETED
 }
 
+enum  ArticleNodeSortModel {
+    UPDATE_TIME
+}
+
+type ArticleNode {
+    id: Int!
+    articleId: Int!
+    changeUserId: Int
+    state: ArticleNodeState
+    previousVersionId: Int
+    nextVersionId: Int
+    updateTime: LocalDateTime
+    title: String
+    coverImageUrl: String
+    content: String
+
+    previous: [ArticleNode]
+    next : [ArticleNode]
+    article : Article
+    changeUser : User
+}
+
+input ArticleNodeFilter {
+    pageModel: PageModel = {}
+    articleNodeSortModel : ArticleNodeSortModel
+    asc : Boolean = false
+
+    id: Int
+
+    underReview : Boolean
+    latestPass : Boolean
+
+    changeUserId : [ID]
+    state : [ArticleNodeState]
+    updateTimeRanger : TimeRanger
+
+}

@@ -15,6 +15,18 @@ enum ArticleState {
     PUBLISHED
 }
 
+enum ArticleSortModel {
+    CREATE_TIME,
+    PUBLISH_TIME,
+    UPDATE_TIME,
+
+    VIEW_COUNT,
+    COMMENT_COUNT,
+    LIKE_COUNT,
+    DISLIKE_COUNT,
+    SHARE_COUNT,
+}
+
 # GraphQL 类型定义
 type Article {
     id: ID!
@@ -37,10 +49,16 @@ type Article {
     user : User
     editors : [User]
     editorIds: [ID]
+    articleNodeList(articleNodeFilter : ArticleNodeFilter = {}) : [ArticleNode]
 }
 
 
 input ArticleFilter {
+    pageModel: PageModel = {}
+    articleSortModel : ArticleSortModel
+    asc : Boolean = false
+
+
     # 精准描述查找哪一个文章从id
     id: ID
 

@@ -3,15 +3,11 @@ package com.til.wtcr_service.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.til.wtcr_service.config.JwtConfig;
 import com.til.wtcr_service.eumn.ResultType;
-import com.til.wtcr_service.pojo.Result;
+import com.til.wtcr_service.pojo.data.Result;
 import com.til.wtcr_service.pojo.User;
 import com.til.wtcr_service.service.UserService;
 import jakarta.annotation.Resource;
 import jakarta.validation.constraints.Pattern;
-import org.apache.ibatis.annotations.Param;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.DigestUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
